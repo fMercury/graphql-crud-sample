@@ -6,9 +6,9 @@ const { decodedToken } = require('./decodedToken');
 
 const resolvers = {
   Query: {
-    users: async (root, args, { context, req }, info) => { 
-        const decoded = decodedToken(req);
-        return context.users();
+    users: async (root, args, context, info) => { 
+      const decoded = decodedToken(context.req);
+      return context.UserProfile.findAll();
     },
   },
   Mutation: {
@@ -19,21 +19,18 @@ const resolvers = {
           name,
           bcrypt.hashSync(publickey, 3)
         );
-      console.log(newUser.dataValues)
-
         return {token : jwt.sign(newUser.dataValues, "supersecret")};
     },
-    loginUser: async (root, args, { context }, info)  => {
+    loginUser: async (root, args, context , info)  => {
       const { data: { lastname, publickey } } = args;
-      const [ theUser ] = await context.users({
-        where: {
+      const [theUser] = await context.UserProfile.findAllByLastName(
           lastname
-        }
-      })
+      )
+
       if (!theUser) throw new Error('Unable to Login');
-      const isMatch = bcrypt.compareSync(publickey, theUser.publickey);
+      const isMatch = bcrypt.compareSync(publickey, theUser.dataValues.publickey);
       if (!isMatch) throw new Error('Unable to Login');
-      return {token : jwt.sign(theUser, "supersecret")};
+      return { token: jwt.sign(theUser.dataValues, "supersecret")};
     }
   }
 };

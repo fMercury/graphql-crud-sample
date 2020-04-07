@@ -12,26 +12,14 @@ module.exports = {
         return undefined
     },
 
-    findAll: (req, res) => {
-    UserProfile.findAll()
-        .then(data => { res.send(data); })
-        .catch(error => {
-            res.status(500).send({
-                message:
-                    error.message || "Some error occurred while retrieving UserProfile by lastname"
-            });
-        });
+    findAll: () => {
+        return UserProfile.findAll()
     },
 
-    findAllByLastName: (req, res) => {
-    const lastname = req.query.lastname;
-    var condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
-    UserProfile.findAll({ where: condition })
-        .then(data => { return (data); })
-        .catch(error => { 
-            return error
-        });
-        return undefined
+    findAllByLastName: (lastname) => {
+    let condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
+    return UserProfile.findAll({ where: condition })
+        
     },
 
     findOne: (req, res) => {
