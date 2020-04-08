@@ -17,7 +17,8 @@ module.exports = {
     },
 
     findAllByLastName: (lastname) => {
-    let condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
+    // let condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
+    let condition = lastname ? { lastname: { [Op.like]: `${lastname}` } } : null;
     return UserProfile.findAll({ where: condition })
         
     },

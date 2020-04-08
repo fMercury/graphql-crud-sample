@@ -1,16 +1,16 @@
+const { gql } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { decodedToken } = require('./util/decodedToken');
 
 
+const typeDefs = gql`
+  type Mutation {
+    signupUser(data: UserCreateInput!) : AuthPayLoad!
+    loginUser(data: UserLoginInput!): AuthPayLoad!
+  }
+`;
 
-const resolvers = {
-  Query: {
-    users: async (root, args, context, info) => {
-      const decoded = decodedToken(context.req);
-      return context.UserProfile.findAll();
-    },
-  },
+resolvers = {
   Mutation: {
     signupUser: async (root, args, context, info) => {
       const { data: { name, lastname, publickey } } = args;
@@ -34,7 +34,11 @@ const resolvers = {
       if (!isMatch) throw new Error('Unable to Login');
       return { token: jwt.sign(theUser.dataValues, "supersecret") };
     }
-  }
+  },
+
 };
 
-module.exports = resolvers;
+module.exports = {
+  typeDefs,
+  resolvers,
+};
