@@ -51,3 +51,4 @@ typings/
 
 # environment variables
 .env
+.sequelizerc

@@ -9,89 +9,80 @@ module.exports = {
             lastname: lastname,
             publickey: publickey
         })
-        return undefined
     },
+
 
     findAll: () => {
         return UserProfile.findAll()
     },
 
     findAllByLastName: (lastname) => {
-    // let condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
-    let condition = lastname ? { lastname: { [Op.like]: `${lastname}` } } : null;
-    return UserProfile.findAll({ where: condition })
+        // let condition = lastname ? { lastname: { [Op.like]: `%${lastname}%` } } : null;
+        let condition = lastname ? { lastname: { [Op.like]: `${lastname}` } } : null;
         
+        return UserProfile.findAll({ where: condition })        
     },
 
-    findOne: (req, res) => {
-        const id = req.params.id;
-        UserProfile.findByPk(id)
-            .then(data => {
-                res.send(data);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: "Error retrieving UserProfile with id=" + id
-                });
-            });
+    findOne: (id) => {
+        return UserProfile.findByPk(id)
     },
 
-    update: (req, res) => {
-        const id = req.params.id;
-        UserProfile.update(req.body, {
+    
+    update: (id, body) => {
+        return UserProfile.update(body, {
             where: { id: id }
-        })
-            .then(num => {
+        }).then(num => {
                 if (num == 1) {
-                    res.send({
-                        message: "UserProfile was updated successfully."
-                    });
-                } else {
-                    res.send({
+                    return {
+                        message: `UserProfile was updated successfully.`
+                    };
+                }
+                if (num != 1) {
+                    return{
                         message: `Cannot update UserProfile with id=${id}. Maybe UserProfile was not found or req.body is empty!`
-                    });
+                    };
                 }
             })
             .catch(error => {
-                res.status(500).send({
-                    message: "Error updating UserProfile with id=" + id
-                });
+                return {
+                    message: `Error updating UserProfile with id=${id}.`
+                };
             });
+
     },
 
-    delete: (req, res) => {
-        const id = req.params.id;
-        UserProfile.destroy({
+    delete: (id) => {
+        return UserProfile.destroy({
             where: { id: id }
         })
             .then(num => {
                 if (num == 1) {
-                    res.send({
+                    return({
                         message: "UserProfile was deleted successfully!"
                     });
                 } else {
-                    res.send({
+                    return({
                         message: `Cannot delete UserProfile with id=${id}. Maybe UserProfile was not found!`
                     });
                 }
             })
             .catch(error => {
-                res.status(500).send({
+                return({
                     message: "Could not delete UserProfile with id=" + id
                 });
             });
     },
 
-    deleteAll: (req, res) => {
-        UserProfile.destroy({
+    deleteAll: () => {
+        return UserProfile.destroy({
             where: {},
             truncate: false
         })
             .then(nums => {
-                res.send({ message: `${nums} UserProfiles were deleted successfully!` });
+                return({ message: `${nums} UserProfiles were deleted successfully!` });
             })
             .catch(error => {
-                res.status(500).send({
+                return({
                     message:
                         err.message || "Some error occurred while removing all UserProfiles."
                 });

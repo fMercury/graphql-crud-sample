@@ -1,11 +1,11 @@
 # grapqhl-jwt-test
 
 
-mutation singupUser{
+mmutation singupUser{
   signupUser(data: {
-    lastname:"fmercury"
-    name:"fran"
-    publickey:"666"  
+    name:"Frank"
+    lastname:"Frank@Tank"
+    publickey:"6666"  
 	}){
  		token 
 	}
@@ -13,24 +13,77 @@ mutation singupUser{
 
 mutation loginUser{
   loginUser(data: {
-    lastname:"fmercury"
-    publickey:"666"  
+    lastname:"ZName"
+    publickey:"6666"  
 	}){
  		token 
 	}
 }
 
 
-query findAll{  
+mutation updateUser($data: UserUpdateInput!){
+  updateUser(data: $data){
+		message
+  }
+}
+
+mutation deleteUser($data: UserId!){  
+  deleteUser(data: $data){
+		message  
+  }
+}
+
+mutation deleteAll{
+    deleteAll{
+		message  
+  }
+}
+
+query findAllUsers{  
   users{
+    id
+    name
+    lastname
+    publickey
+  }
+}
+
+query findOneUserById($data: UserId!){  
+  usersById(data: $data){
+    id
+    name
     lastname
   }
 }
 
-----
+query findUsersByLastName($data: UserLastName!){  
+  usersByLastName(data: $data){
+    id
+    name
+    lastname
+  }
+}
+
+
+
+------------------------------------
 HTTP HEADERS
 
 {
-      "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwibmFtZSI6ImZyYW4iLCJsYXN0bmFtZSI6ImZiZXJkdW5nbWFpbGNvbSIsInB1YmxpY2tleSI6IiQyYiQwNCR2eDZ3UjE2dmxvTmwxQ0hGc0ZCTXZ1TWMyNlgxS2JWdENFTFYxT3NxdTJ6S0hkaUkvcFpZaSIsImNyZWF0ZWRBdCI6IjIwMjAtMDQtMDdUMDU6MDA6NDUuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjAtMDQtMDdUMDU6MDA6NDUuMDAwWiIsImlhdCI6MTU4NjIzNzA2Mn0.DlB4uXHtqzo0F8K-bwejEBi8GYbQs9x0WLDiiPOmnx0"
+    "authorization": " ... "
     }
 
+------------------------------------
+QUERY VARIABLES
+
+{ "data": { "id" : 8} }
+
+{ "data": { "lastname" : "wendy"} }
+
+{ "data": 
+  { 
+    "id": "40",
+    "name": "Cinti@",
+    "lastname": "Cinti"    
+	} 
+}
