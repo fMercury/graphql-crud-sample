@@ -1,17 +1,29 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  input UserCreateInput {
-    lastname: String!
+
+  type User {
     name: String!
-    publickey: String!
-  }
-  input UserLoginInput {
     lastname: String!
     publickey: String!
+    id: Int
   }
+
+  type AuthPayLoad {
+    token: String!
+  }
+
+  type OpResponse {
+    message: String!
+  }
+
 `;
+
+const resolvers = {
+};
+
 
 module.exports = {
   typeDefs,
+  resolvers,
 };

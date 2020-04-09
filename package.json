@@ -20,8 +20,7 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
-    "dev": "nodemon node index.js",
-    "start": "nodemon node ./SchemaResolver_UserProfile/index.js",
+    "start": "nodemon node ./ServiceUser/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
