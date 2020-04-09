@@ -1,7 +1,7 @@
 # grapqhl-jwt-test
 
 
-mmutation singupUser{
+mutation signupUser{
   signupUser(data: {
     name:"Frank"
     lastname:"Frank@Tank"
