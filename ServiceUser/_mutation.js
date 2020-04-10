@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const { decodedToken } = require('../util/decodedToken');
 
 const typeDefs = gql`
 

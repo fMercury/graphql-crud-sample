@@ -1,6 +1,9 @@
-# grapqhl-jwt-test
+# GraphQL CRUD Sample
 
 
+
+
+-------------------------------------------
 mutation signupUser{
   signupUser(data: {
     name:"Frank"
@@ -82,8 +85,8 @@ QUERY VARIABLES
 
 { "data": 
   { 
-    "id": "40",
-    "name": "Cinti@",
-    "lastname": "Cinti"    
+    "id": "62",
+    "name": "Cinti@friday",
+    "lastname": "CintiFRIDAY"    
 	} 
 }
