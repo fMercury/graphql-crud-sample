@@ -127,7 +127,7 @@ describe('A user', function () {
                             }`,
                     variables: {
                         data: { 
-                            id: 61
+                            id: 1
                         }
                     }
                 }),

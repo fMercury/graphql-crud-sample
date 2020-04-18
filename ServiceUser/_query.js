@@ -16,7 +16,7 @@ resolvers = {
 
   Query: {
     users: async (root, args, context, info) => {
-      const decoded = decodedToken(context.req);
+      //const decoded = decodedToken(context.req);
       return context.UserProfile.findAll();
     },
 

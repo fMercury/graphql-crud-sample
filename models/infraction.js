@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Infraction.associate = function(models) {
     // associations can be defined here
-    Infraction.belongsTo(models.UserProfile, {
+    Infraction.belongsTo(models.userprofile, {
       foreignKey: 'userProfileId',
       onDelete: 'CASCADE'
     })
