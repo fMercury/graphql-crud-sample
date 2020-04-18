@@ -10,16 +10,18 @@
     "@apollo/federation": "^0.14.0",
     "apollo-server": "^2.11.0",
     "bcrypt": "^4.0.1",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "graphql": "^15.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
+    "pg": "^8.0.2",
     "sequelize": "^5.21.6"
   },
   "devDependencies": {
     "babel-register": "^6.26.0",
-    "graphql-tester": "^0.0.5",
+    "graphql-tester": "0.0.5",
     "jest": "^25.3.0"
   },
   "scripts": {

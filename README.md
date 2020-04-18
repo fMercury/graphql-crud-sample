@@ -1,8 +1,4 @@
 # GraphQL CRUD Sample
-
-
-
-
 -------------------------------------------
 mutation signupUser{
   signupUser(data: {

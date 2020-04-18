@@ -11,19 +11,19 @@ module.exports = {
       user: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
+      // createdAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // },
+      // updatedAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // },
       userProfileId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references:{
-          model: 'UserProfiles',
+          model: 'userprofiles',
           key: 'id',
           as: 'userProfileId',
         }

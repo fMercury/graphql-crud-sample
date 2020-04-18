@@ -1,5 +1,5 @@
 const db = require('../models')
-const UserProfile = db.UserProfile;
+const UserProfile = db.userprofile;
 const Op = db.Sequelize.Op;
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
         return UserProfile.findByPk(id)
     },
 
-    
+    // return(await UserProfile.update(...)) === 1 ? 'todo piola" : 'todo mal'
     update: (id, body) => {
         return UserProfile.update(body, {
             where: { id: id }
