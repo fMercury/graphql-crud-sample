@@ -25,6 +25,7 @@
     "jest": "^25.3.0"
   },
   "scripts": {
+    "build": "npx webpack --config ./ServiceUser/webpack.config.js --mode production",
     "start": "nodemon node ./ServiceUser/index.js",
     "test": "jest"
   },
