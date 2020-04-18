@@ -9,7 +9,8 @@ const types = require('./_type');
 const UserProfile = require('../controller').UserProfile;
 
 const server = new ApolloServer({
-
+  introspection: true,
+  playground: true,
   schema: buildFederatedSchema([inputs, queries, mutations, types]),
   context: req => ({
     UserProfile,
