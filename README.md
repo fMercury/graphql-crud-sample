@@ -1,5 +1,7 @@
 # GraphQL CRUD Sample
 -------------------------------------------
+
+```
 mutation signupUser{
   signupUser(data: {
     name:"Frank"
@@ -62,18 +64,22 @@ query findUsersByLastName($data: UserLastName!){
     lastname
   }
 }
+```
 
-
-
-------------------------------------
 HTTP HEADERS
+------------------------------------
+
+```
 
 {
     "authorization": " ... "
     }
+```
 
-------------------------------------
 QUERY VARIABLES
+------------------------------------
+
+```
 
 { "data": { "id" : 8} }
 
@@ -86,3 +92,5 @@ QUERY VARIABLES
     "lastname": "CintiFRIDAY"    
 	} 
 }
+
+```
